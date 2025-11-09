@@ -1,0 +1,95 @@
+{
+  "task_description": "Filter a database view in Notion",
+  "app_url": "https://notion.so",
+  "captured_at": "2025-11-08T12:56:21.444874",
+  "states": [
+    {
+      "step": 0,
+      "name": "initial_state",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/0_initial_state.png",
+      "timestamp": "2025-11-08T12:56:19.991707",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "description": "Initial page state"
+      }
+    },
+    {
+      "step": 1,
+      "name": "step_1_failed_database_view_(table,_board,_list,_or_gallery_view)",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/1_step_1_failed_database_view_(table,_board,_list,_or_gallery_view).png",
+      "timestamp": "2025-11-08T12:56:20.283261",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "action": "click",
+        "target": "database view (table, board, list, or gallery view)",
+        "description": "Navigate to and click on the specific database view that needs filtering",
+        "success": false
+      }
+    },
+    {
+      "step": 2,
+      "name": "step_2_failed_Filter_button_(usually_labeled_'Filter'_or_represented_by_a_funnel_icon_in_the_database_toolbar)",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/2_step_2_failed_Filter_button_(usually_labeled_'Filter'_or_represented_by_a_funnel_icon_in_the_database_toolbar).png",
+      "timestamp": "2025-11-08T12:56:20.513746",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "action": "click",
+        "target": "Filter button (usually labeled 'Filter' or represented by a funnel icon in the database toolbar)",
+        "description": "Click the filter button to open the filter configuration panel",
+        "success": false
+      }
+    },
+    {
+      "step": 3,
+      "name": "step_3_failed_'Add_filter'_or_'+'_button_in_the_filter_panel",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/3_step_3_failed_'Add_filter'_or_'+'_button_in_the_filter_panel.png",
+      "timestamp": "2025-11-08T12:56:20.749238",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "action": "click",
+        "target": "'Add filter' or '+' button in the filter panel",
+        "description": "Add a new filter condition to the database view",
+        "success": false
+      }
+    },
+    {
+      "step": 4,
+      "name": "step_4_failed_Property_dropdown_in_the_filter_condition",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/4_step_4_failed_Property_dropdown_in_the_filter_condition.png",
+      "timestamp": "2025-11-08T12:56:20.976115",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "action": "select",
+        "target": "Property dropdown in the filter condition",
+        "description": "Select the database property to filter by (e.g., Status, Tags, Date, etc.)",
+        "success": false
+      }
+    },
+    {
+      "step": 5,
+      "name": "step_5_failed_Condition_dropdown_(e.g.,_'is',_'is_not',_'contains',_'does_not_contain')",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/5_step_5_failed_Condition_dropdown_(e.g.,_'is',_'is_not',_'contains',_'does_not_contain').png",
+      "timestamp": "2025-11-08T12:56:21.210182",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "action": "select",
+        "target": "Condition dropdown (e.g., 'is', 'is not', 'contains', 'does not contain')",
+        "description": "Select the filter condition/operator for the chosen property",
+        "success": false
+      }
+    },
+    {
+      "step": 6,
+      "name": "step_7_failed_'Done',_'Apply',_or_close_button_(X)_in_the_filter_panel",
+      "filepath": "captured_states/20251108_125615_Filter_a_database_view_in_Notion/6_step_7_failed_'Done',_'Apply',_or_close_button_(X)_in_the_filter_panel.png",
+      "timestamp": "2025-11-08T12:56:21.444858",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "action": "click",
+        "target": "'Done', 'Apply', or close button (X) in the filter panel",
+        "description": "Apply the filter and close the filter configuration panel to see the filtered results",
+        "success": false
+      }
+    }
+  ]
+}

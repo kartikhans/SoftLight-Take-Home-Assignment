@@ -1,0 +1,17 @@
+{
+  "task_description": "Filter a database view in Notion",
+  "app_url": "https://notion.so",
+  "captured_at": "2025-11-08T12:54:31.299136",
+  "states": [
+    {
+      "step": 0,
+      "name": "initial_state",
+      "filepath": "captured_states/20251108_125426_Filter_a_database_view_in_Notion/0_initial_state.png",
+      "timestamp": "2025-11-08T12:54:31.299104",
+      "metadata": {
+        "url": "https://www.notion.com/",
+        "description": "Initial page state"
+      }
+    }
+  ]
+}

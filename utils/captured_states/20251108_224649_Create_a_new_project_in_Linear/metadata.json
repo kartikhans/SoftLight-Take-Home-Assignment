@@ -1,0 +1,69 @@
+{
+  "task_description": "Create a new project in Linear",
+  "app_url": "https://linear.app",
+  "captured_at": "2025-11-08T22:46:55.919368",
+  "states": [
+    {
+      "step": 0,
+      "name": "initial_state",
+      "filepath": "captured_states/20251108_224649_Create_a_new_project_in_Linear/0_initial_state.png",
+      "timestamp": "2025-11-08T22:46:54.338289",
+      "metadata": {
+        "url": "https://linear.app/",
+        "description": "Initial page state"
+      }
+    },
+    {
+      "step": 1,
+      "name": "step_1_failed_New_project_button_or_Create_project_button",
+      "filepath": "captured_states/20251108_224649_Create_a_new_project_in_Linear/1_step_1_failed_New_project_button_or_Create_project_button.png",
+      "timestamp": "2025-11-08T22:46:54.727155",
+      "metadata": {
+        "url": "https://linear.app/",
+        "action": "CLICK",
+        "target": "New project button or Create project button",
+        "description": "Navigate to the projects section and click the button to create a new project",
+        "success": false
+      }
+    },
+    {
+      "step": 2,
+      "name": "step_4_failed_Team_dropdown_menu",
+      "filepath": "captured_states/20251108_224649_Create_a_new_project_in_Linear/2_step_4_failed_Team_dropdown_menu.png",
+      "timestamp": "2025-11-08T22:46:55.091559",
+      "metadata": {
+        "url": "https://linear.app/",
+        "action": "SELECT",
+        "target": "Team dropdown menu",
+        "description": "Select which team the project should belong to from the dropdown",
+        "success": false
+      }
+    },
+    {
+      "step": 3,
+      "name": "step_5_failed_Project_color_picker",
+      "filepath": "captured_states/20251108_224649_Create_a_new_project_in_Linear/3_step_5_failed_Project_color_picker.png",
+      "timestamp": "2025-11-08T22:46:55.481770",
+      "metadata": {
+        "url": "https://linear.app/",
+        "action": "SELECT",
+        "target": "Project color picker",
+        "description": "Choose a color for the project from the available options",
+        "success": false
+      }
+    },
+    {
+      "step": 4,
+      "name": "step_6_failed_Create_project_button",
+      "filepath": "captured_states/20251108_224649_Create_a_new_project_in_Linear/4_step_6_failed_Create_project_button.png",
+      "timestamp": "2025-11-08T22:46:55.919340",
+      "metadata": {
+        "url": "https://linear.app/",
+        "action": "CLICK",
+        "target": "Create project button",
+        "description": "Finalize and create the project by clicking the create/submit button",
+        "success": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "task_description": "Play a random video on Youtube",
+  "app_url": "https://www.youtube.com",
+  "captured_at": "2025-11-08T22:53:21.351550",
+  "states": [
+    {
+      "step": 0,
+      "name": "initial_state",
+      "filepath": "captured_states/20251108_225315_Play_a_random_video_on_Youtube/0_initial_state.png",
+      "timestamp": "2025-11-08T22:53:21.180967",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "description": "Initial page state"
+      }
+    },
+    {
+      "step": 1,
+      "name": "step_1_failed_search_box_or_search_input_field",
+      "filepath": "captured_states/20251108_225315_Play_a_random_video_on_Youtube/1_step_1_failed_search_box_or_search_input_field.png",
+      "timestamp": "2025-11-08T22:53:21.228432",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "CLICK",
+        "target": "search_box or search input field",
+        "description": "Click on the YouTube search box to focus on it",
+        "success": false
+      }
+    },
+    {
+      "step": 2,
+      "name": "step_3_failed_search_box",
+      "filepath": "captured_states/20251108_225315_Play_a_random_video_on_Youtube/2_step_3_failed_search_box.png",
+      "timestamp": "2025-11-08T22:53:21.268575",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "PRESS",
+        "target": "search_box",
+        "description": "Press Enter key to search for videos",
+        "success": false
+      }
+    },
+    {
+      "step": 3,
+      "name": "step_4_failed_first_video_result_or_video_thumbnail",
+      "filepath": "captured_states/20251108_225315_Play_a_random_video_on_Youtube/3_step_4_failed_first_video_result_or_video_thumbnail.png",
+      "timestamp": "2025-11-08T22:53:21.310107",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "CLICK",
+        "target": "first_video_result or video_thumbnail",
+        "description": "Click on the first video in the search results to play it",
+        "success": false
+      }
+    },
+    {
+      "step": 4,
+      "name": "step_5_failed_play_button",
+      "filepath": "captured_states/20251108_225315_Play_a_random_video_on_Youtube/4_step_5_failed_play_button.png",
+      "timestamp": "2025-11-08T22:53:21.351532",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "CLICK",
+        "target": "play_button",
+        "description": "Click the play button if the video doesn't autoplay",
+        "success": false
+      }
+    }
+  ]
+}

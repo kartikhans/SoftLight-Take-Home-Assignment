@@ -1,0 +1,29 @@
+[project]
+name = "softlight-take-home-assignment"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=0.72.0",
+    "google-genai>=1.49.0",
+    "google-generativeai>=0.8.5",
+    "jupyter>=1.1.1",
+    "langchain>=1.0.3",
+    "langchain-core>=1.0.3",
+    "langchain-gemini>=0.1.1",
+    "langchain-openai>=1.0.2",
+    "notebook>=7.4.7",
+    "numpy>=2.3.4",
+    "ollama>=0.6.0",
+    "openai>=2.7.1",
+    "opencv-python>=4.11.0.86",
+    "pandas>=2.3.3",
+    "pillow>=12.0.0",
+    "playwright>=1.55.0",
+    "pytesseract>=0.3.13",
+    "python-dotenv>=1.2.1",
+    "ruff>=0.14.4",
+    "scikit-image>=0.25.2",
+    "torch>=2.9.0",
+]

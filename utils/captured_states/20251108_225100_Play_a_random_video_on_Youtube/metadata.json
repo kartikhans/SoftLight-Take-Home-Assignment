@@ -1,0 +1,69 @@
+{
+  "task_description": "Play a random video on Youtube",
+  "app_url": "https://www.youtube.com",
+  "captured_at": "2025-11-08T22:51:05.636025",
+  "states": [
+    {
+      "step": 0,
+      "name": "initial_state",
+      "filepath": "captured_states/20251108_225100_Play_a_random_video_on_Youtube/0_initial_state.png",
+      "timestamp": "2025-11-08T22:51:05.420681",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "description": "Initial page state"
+      }
+    },
+    {
+      "step": 1,
+      "name": "step_1_failed_YouTube_logo_in_top-left_corner",
+      "filepath": "captured_states/20251108_225100_Play_a_random_video_on_Youtube/1_step_1_failed_YouTube_logo_in_top-left_corner.png",
+      "timestamp": "2025-11-08T22:51:05.511466",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "CLICK",
+        "target": "YouTube logo in top-left corner",
+        "description": "Navigate to YouTube homepage to access the main interface",
+        "success": false
+      }
+    },
+    {
+      "step": 2,
+      "name": "step_2_failed_Search_box_at_the_top_of_the_page",
+      "filepath": "captured_states/20251108_225100_Play_a_random_video_on_Youtube/2_step_2_failed_Search_box_at_the_top_of_the_page.png",
+      "timestamp": "2025-11-08T22:51:05.552702",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "CLICK",
+        "target": "Search box at the top of the page",
+        "description": "Focus on the search input field to enter search terms",
+        "success": false
+      }
+    },
+    {
+      "step": 3,
+      "name": "step_4_failed_Enter_key_on_keyboard",
+      "filepath": "captured_states/20251108_225100_Play_a_random_video_on_Youtube/3_step_4_failed_Enter_key_on_keyboard.png",
+      "timestamp": "2025-11-08T22:51:05.594325",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "PRESS",
+        "target": "Enter key on keyboard",
+        "description": "Execute the search to display video results",
+        "success": false
+      }
+    },
+    {
+      "step": 4,
+      "name": "step_5_failed_First_video_thumbnail_in_search_results",
+      "filepath": "captured_states/20251108_225100_Play_a_random_video_on_Youtube/4_step_5_failed_First_video_thumbnail_in_search_results.png",
+      "timestamp": "2025-11-08T22:51:05.636006",
+      "metadata": {
+        "url": "https://www.youtube.com/",
+        "action": "CLICK",
+        "target": "First video thumbnail in search results",
+        "description": "Select and play the first video from the search results",
+        "success": false
+      }
+    }
+  ]
+}

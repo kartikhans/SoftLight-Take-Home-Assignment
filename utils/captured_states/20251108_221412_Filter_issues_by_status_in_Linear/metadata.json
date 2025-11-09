@@ -1,0 +1,43 @@
+{
+  "task_description": "Filter issues by status in Linear",
+  "app_url": "https://linear.app",
+  "captured_at": "2025-11-08T22:14:18.380193",
+  "states": [
+    {
+      "step": 0,
+      "name": "initial_state",
+      "filepath": "captured_states/20251108_221412_Filter_issues_by_status_in_Linear/0_initial_state.png",
+      "timestamp": "2025-11-08T22:14:17.574178",
+      "metadata": {
+        "url": "https://linear.app/",
+        "description": "Initial page state"
+      }
+    },
+    {
+      "step": 1,
+      "name": "step_1_failed_filter_button",
+      "filepath": "captured_states/20251108_221412_Filter_issues_by_status_in_Linear/1_step_1_failed_filter_button.png",
+      "timestamp": "2025-11-08T22:14:17.942970",
+      "metadata": {
+        "url": "https://linear.app/",
+        "action": "CLICK",
+        "target": "filter button",
+        "description": "Click on the filter button to open the filter options",
+        "success": false
+      }
+    },
+    {
+      "step": 2,
+      "name": "step_2_failed_status_filter",
+      "filepath": "captured_states/20251108_221412_Filter_issues_by_status_in_Linear/2_step_2_failed_status_filter.png",
+      "timestamp": "2025-11-08T22:14:18.380168",
+      "metadata": {
+        "url": "https://linear.app/",
+        "action": "CLICK",
+        "target": "status filter",
+        "description": "Click on the status filter option to select it",
+        "success": false
+      }
+    }
+  ]
+}
