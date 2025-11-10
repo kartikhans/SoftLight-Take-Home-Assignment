@@ -1,7 +1,7 @@
 test_tasks = [
     {
         "app": "Linear",
-        "description": "Create a new project in Linear, login into the account with email - kushmicro@gmail.com and use passkey",
+        "description": "Create a new project in Linear.",
         "url": "https://linear.app",
     },
     {

@@ -23,9 +23,19 @@ class OneStepAtTime:
         screenshot_dir = f"{Config.SCREENSHOT_DIR}/{sanitized_task}"
         action_history = []
 
+        AUTH_FILE = "auth_state.json"
+
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=False, slow_mo=500)
-            page = browser.new_page()
+
+            if os.path.exists(AUTH_FILE):
+                print(f"Loading authentication from {AUTH_FILE}")
+                context = browser.new_context(storage_state=AUTH_FILE)
+            else:
+                print("Auth file not found, launching new context.")
+                context = browser.new_context()
+
+            page = context.new_page()
             page.goto(start_url)
 
             try:
