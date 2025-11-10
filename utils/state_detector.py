@@ -1,7 +1,8 @@
 import os
 import re
 
-from playwright.sync_api import sync_playwright, Page, Locator
+from playwright.sync_api import Page, Locator
+from utils.config import Config
 
 class StateDetector:
     def __init__(self):
@@ -24,21 +25,20 @@ class StateDetector:
                     continue
 
                 text = (
-                        el.text_content() or
-                        el.get_attribute("aria-label") or
-                        el.get_attribute("placeholder") or
-                        el.get_attribute("title")
+                    el.text_content()
+                    or el.get_attribute("aria-label")
+                    or el.get_attribute("placeholder")
+                    or el.get_attribute("title")
                 )
 
                 if not text:
-                    # *** FIX: Use evaluate to get the tag name ***
                     tag = el.evaluate("element => element.tagName.toLowerCase()")
                     if tag == "input":
-                        text = el.get_attribute("value") or "input" # Fallback
+                        text = el.get_attribute("value") or "input"
                     else:
-                        continue # Skip elements with no clear identifier
+                        continue
 
-                text = re.sub(r'\s+', ' ', text).strip()
+                text = re.sub(r"\s+", " ", text).strip()
 
                 if text in seen_text and text != "input":
                     continue
@@ -57,26 +57,27 @@ class StateDetector:
         interactive_strings = []
 
         for i, el in enumerate(elements):
-            agent_id = i + 1 # 1-based indexing for the LLM
+            agent_id = i + 1
 
             try:
-                # *** FIX: Use evaluate to get the tag name ***
                 tag = el.evaluate("element => element.tagName.toLowerCase()")
 
                 text = (
-                        el.text_content() or
-                        el.get_attribute("aria-label") or
-                        el.get_attribute("placeholder") or
-                        el.get_attribute("title") or
-                        (el.get_attribute("value") if tag == "input" else "") # Use tag variable
+                    el.text_content()
+                    or el.get_attribute("aria-label")
+                    or el.get_attribute("placeholder")
+                    or el.get_attribute("title")
+                    or (
+                        el.get_attribute("value") if tag == "input" else ""
+                    )  # Use tag variable
                 )
-                text = re.sub(r'\s+', ' ', text).strip()
+                text = re.sub(r"\s+", " ", text).strip()
 
                 interactive_strings.append(
                     f"<element id='{agent_id}' type='{tag}'>{text}</element>"
                 )
             except Exception:
-                continue # Element may have gone stale
+                continue
 
         return "\n".join(interactive_strings)
 
@@ -101,22 +102,22 @@ class StateDetector:
 
     def click_element(self, page: Page, element_id: str):
         """
-        Finds the element by its ID (index) and clicks it.
+        Finds the element by its id and clicks it.
         """
         element = self.get_element_by_agent_id(page, element_id)
         if element:
             # Use a more robust click, force=True can help
-            element.click(timeout=5000)
+            element.click(timeout=Config.CLICK_TYPE_TIMEOUT)
         else:
             raise Exception(f"Failed to find element {element_id} to click.")
 
     def type_in_element(self, page: Page, element_id: str, text: str):
         """
-        Finds the element by its ID (index) and types in it.
+        Finds the element by its id and types in it.
         """
         element = self.get_element_by_agent_id(page, element_id)
         if element:
-            element.fill(text, timeout=5000)
+            element.fill(text, timeout=Config.CLICK_TYPE_TIMEOUT)
         else:
             raise Exception(f"Failed to find element {element_id} to type in.")
 

@@ -8,12 +8,12 @@ class ChatGpt:
         self.model_name = "gpt-3.5-turbo"
 
     def generate_response(
-            self,
-            content,
-            prompt,
-            model_name=None,
-            temperature=0.7,
-            write_file=False,
+        self,
+        content,
+        prompt,
+        model_name=None,
+        temperature=0.7,
+        write_file=False,
     ):
         if model_name is not None:
             self.model_name = model_name

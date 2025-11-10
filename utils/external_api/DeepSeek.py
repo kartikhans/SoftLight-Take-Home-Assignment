@@ -10,12 +10,12 @@ class DeepSeek:
         self.model_name = "deepseek-chat"
 
     def generate_response(
-            self,
-            prompt,
-            content,
-            model_name=None,
-            temperature=0.7,
-            write_file=False,
+        self,
+        prompt,
+        content,
+        model_name=None,
+        temperature=0.7,
+        write_file=False,
     ):
         if model_name is not None:
             self.model_name = model_name

@@ -1,10 +1,12 @@
 import os
 import re
 import time
+import json
 from playwright.sync_api import sync_playwright
 from task_interpreter import TaskInterpreter
 from state_detector import StateDetector
 from utils.constants import test_tasks
+from config import Config
 
 
 class OneStepAtTime:
@@ -17,8 +19,8 @@ class OneStepAtTime:
         return result
 
     def run_agent(self, task: str, start_url: str, max_steps: int = 15):
-        sanitized_task = re.sub(r'[^a-zA-Z0-9_-]', '_', task.lower())[:50]
-        screenshot_dir = f"screenshots/{sanitized_task}"
+        sanitized_task = re.sub(r"[^a-zA-Z0-9_-]", "_", task.lower())[:50]
+        screenshot_dir = f"{Config.SCREENSHOT_DIR}/{sanitized_task}"
         action_history = []
 
         with sync_playwright() as p:
@@ -28,27 +30,33 @@ class OneStepAtTime:
 
             try:
                 for i in range(max_steps):
-                    print(f"\n--- Step {i+1} ---")
+                    print(f"\n--- Step {i + 1} ---")
 
                     # Give the page a moment to settle
                     time.sleep(1)
 
                     dom_string = self.state_detector.get_simplified_dom_string(page)
 
-                    screenshot_path = os.path.join(screenshot_dir, f"{i+1:02d}_state.png")
+                    screenshot_path = os.path.join(
+                        screenshot_dir, f"{i + 1:02d}_state.png"
+                    )
                     self.state_detector.capture_screenshot(page, screenshot_path)
 
                     if not dom_string:
                         print("DOM string is empty, cannot proceed.")
                         break
 
-                    llm_decision = self.task_interpreter.parse_task(
-                        task_description=task,
+                    llm_decision = self.decide_next_action(
+                        task=task,
                         history=action_history,
-                        current_dom=dom_string
+                        current_dom=dom_string,
                     )
 
                     action_history.append(llm_decision)
+
+                    with open(os.path.join(screenshot_dir, "steps.json"), "w") as f:
+                        json.dump(action_history, f, indent=4)
+
                     action_type = llm_decision.get("action")
 
                     if action_type == "CLICK":
@@ -69,7 +77,9 @@ class OneStepAtTime:
 
                     elif action_type == "FINISH":
                         print("[Action]: Task finished.")
-                        screenshot_path = os.path.join(screenshot_dir, f"{i+2:02d}_final_state.png")
+                        screenshot_path = os.path.join(
+                            screenshot_dir, f"{i + 2:02d}_final_state.png"
+                        )
                         self.state_detector.capture_screenshot(page, screenshot_path)
                         break
                     else:
@@ -83,6 +93,7 @@ class OneStepAtTime:
             finally:
                 print("Closing browser.")
                 browser.close()
+
 
 if __name__ == "__main__":
     model = input("Which model would you like to use for Task Interpretation: ")
@@ -107,17 +118,15 @@ if __name__ == "__main__":
         app_url = task.get("url")
     else:
         task_description = choice
-        app_url = input(
-            "Enter app URL (or press Enter for auto-detection): "
-        ).strip()
+        app_url = input("Enter app URL (or press Enter for auto-detection): ").strip()
         if not app_url:
             app_url = None
 
     if not os.environ.get("OPENAI_API_KEY"):
-        print("="*50)
+        print("=" * 50)
         print("ERROR: OPENAI_API_KEY environment variable not set.")
         print("Please set your API key before running.")
-        print("="*50)
+        print("=" * 50)
     else:
         print("\n\n--- Starting Task ---")
         k.run_agent(task=task_description, start_url=app_url)

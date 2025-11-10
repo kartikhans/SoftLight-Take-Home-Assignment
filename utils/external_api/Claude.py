@@ -1,6 +1,7 @@
 from anthropic import Anthropic
 from utils.config import Config
 
+
 class Claude:
     def __init__(self):
         self.client = Anthropic(api_key=Config.CLAUDE_API_KEY)
@@ -16,6 +17,7 @@ class Claude:
     def generate_response(self, prompt, content, model_name=None):
         if model_name is None:
             model_name = self.model_name
+
         message = self.client.messages.create(
             model=model_name,
             max_tokens=1024,
