@@ -23,7 +23,7 @@ class OneStepAtTime:
         screenshot_dir = f"{Config.SCREENSHOT_DIR}/{sanitized_task}"
         action_history = []
 
-        AUTH_FILE = "auth_state.json"
+        AUTH_FILE = "auth_state_linear.json"
 
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=False, slow_mo=500)

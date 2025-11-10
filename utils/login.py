@@ -2,8 +2,8 @@
 from playwright.sync_api import sync_playwright
 import time
 
-AUTH_FILE = "auth_state.json"
-START_URL = "https://linear.app/login" # Change to Linear/Notion login
+AUTH_FILE = "auth_state_linear.json"
+START_URL = "https://linear.app/login"
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False, slow_mo=500)
@@ -11,7 +11,6 @@ with sync_playwright() as p:
     page = context.new_page()
     page.goto(START_URL)
 
-    print("\n--- PLEASE LOG IN MANUALLY in the browser window ---")
     print("Once you are logged in and on the main dashboard, press Enter here...")
 
     # This pauses the script, giving you time to log in manually
