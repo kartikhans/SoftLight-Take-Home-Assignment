@@ -4,6 +4,7 @@ from utils.external_api.ChatGpt import ChatGpt
 from utils.external_api.Claude import Claude
 from utils.external_api.Gemini import Gemini
 from utils.external_api.DeepSeek import DeepSeek
+from utils.external_api.Perplexity import Perplex
 
 
 class TaskInterpreter:
@@ -14,6 +15,8 @@ class TaskInterpreter:
             self.model_client = Gemini()
         elif model in ["claude"]:
             self.model_client = Claude()
+        elif model in ["perplexity"]:
+            self.model_client = Perplex()
         else:
             self.model_client = ChatGpt()
 
@@ -55,9 +58,9 @@ class TaskInterpreter:
                         - The `element_id` is a number (e.g., 1, 2, 3...).
                         - Do not make up IDs. Only use IDs from the current DOM.
                         - Think step-by-step to get closer to the main task.
+                        - If the goal seems accomplished FINISH the task.
                     """
             result = self.model_client.generate_response(prompt=prompt, content=content)
-
             # Clean the response
             result = re.sub(r"```json\s*|\s*```", "", result).strip()
             print(f"[LLM Decision]: {result}")

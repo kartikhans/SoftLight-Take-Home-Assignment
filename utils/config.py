@@ -10,7 +10,10 @@ class Config:
     DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
     DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL")
     CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY")
-    SCREENSHOT_DIR = "captured_states"
+    PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
+    PERPLEXITY_BASE_URL = os.getenv("PERPLEXITY_BASE_URL")
+    SCREENSHOT_DIR = "screenshots"
     WAIT_TIME = 2
     WAIT_TIME_GEMINI = 5
     SIMILARITY_THRESHOLD = 0.1
+    CLICK_TYPE_TIMEOUT = 5000

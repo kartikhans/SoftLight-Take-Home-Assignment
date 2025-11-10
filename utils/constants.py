@@ -1,7 +1,7 @@
 test_tasks = [
     {
         "app": "Linear",
-        "description": "Create a new project in Linear",
+        "description": "Create a new project in Linear, login into the account with email - kushmicro@gmail.com and use passkey",
         "url": "https://linear.app",
     },
     {
@@ -21,7 +21,17 @@ test_tasks = [
     },
     {
         "app": "Youtube",
-        "description": "Play a random video on Youtube",
+        "description": "How to play the song Hips don't lie by Shakira",
         "url": "https://www.youtube.com",
     },
+    {
+        "app": "Todomvc",
+        "description": "Add two todos: 'Buy milk' and 'Wash car'. Later, clear the list.",
+        "url": "https://todomvc.com/examples/react/dist/",
+    },
+    {
+        "app": "Flipkart",
+        "description": "How to check the price of Iphone 17 pro",
+        "url": "https://www.flipkart.com/",
+    }
 ]
