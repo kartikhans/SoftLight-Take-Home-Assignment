@@ -5,7 +5,7 @@ from utils.external_api.Claude import Claude
 from utils.external_api.Gemini import Gemini
 from utils.external_api.DeepSeek import DeepSeek
 from utils.external_api.Perplexity import Perplex
-
+from utils.external_api.Grok import GrokClient
 
 class TaskInterpreter:
     def __init__(self, model: str = "chatgpt"):
@@ -17,6 +17,8 @@ class TaskInterpreter:
             self.model_client = Claude()
         elif model in ["perplexity"]:
             self.model_client = Perplex()
+        elif model in ["grok"]:
+            self.model_client = GrokClient()
         else:
             self.model_client = ChatGpt()
 
@@ -59,6 +61,7 @@ class TaskInterpreter:
                         - Do not make up IDs. Only use IDs from the current DOM.
                         - Think step-by-step to get closer to the main task.
                         - If the goal seems accomplished FINISH the task.
+                        - Be decisive. Once the user's task is clearly done, you MUST respond with {"action": "FINISH"}
                     """
             result = self.model_client.generate_response(prompt=prompt, content=content)
             # Clean the response

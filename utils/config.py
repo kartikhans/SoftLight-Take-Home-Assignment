@@ -12,6 +12,7 @@ class Config:
     CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY")
     PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
     PERPLEXITY_BASE_URL = os.getenv("PERPLEXITY_BASE_URL")
+    GROK_API_KEY = os.getenv("GROK_API_KEY")
     SCREENSHOT_DIR = "screenshots"
     WAIT_TIME = 2
     WAIT_TIME_GEMINI = 5

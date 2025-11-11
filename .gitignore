@@ -206,3 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 utils/screenshots
+
+utils/auth_state_linear.json
+.DS_Store

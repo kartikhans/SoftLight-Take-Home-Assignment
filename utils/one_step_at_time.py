@@ -18,14 +18,22 @@ class OneStepAtTime:
         result = self.task_interpreter.parse_task(task, history, current_dom)
         return result
 
-    def run_agent(self, task: str, start_url: str, max_steps: int = 15):
+    def run_agent(self, task: str, start_url: str, auth_file: str, max_steps: int = 15):
         sanitized_task = re.sub(r"[^a-zA-Z0-9_-]", "_", task.lower())[:50]
         screenshot_dir = f"{Config.SCREENSHOT_DIR}/{sanitized_task}"
         action_history = []
 
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=False, slow_mo=500)
-            page = browser.new_page()
+
+            if os.path.exists(auth_file):
+                print(f"Loading authentication from {auth_file}")
+                context = browser.new_context(storage_state=auth_file)
+            else:
+                print("Auth file not found, launching new context.")
+                context = browser.new_context()
+
+            page = context.new_page()
             page.goto(start_url)
 
             try:
@@ -129,4 +137,4 @@ if __name__ == "__main__":
         print("=" * 50)
     else:
         print("\n\n--- Starting Task ---")
-        k.run_agent(task=task_description, start_url=app_url)
+        k.run_agent(task=task_description, start_url=app_url, auth_file="auth_state_linear.json")
