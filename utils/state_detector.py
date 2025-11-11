@@ -107,7 +107,10 @@ class StateDetector:
         element = self.get_element_by_agent_id(page, element_id)
         if element:
             # Use a more robust click, force=True can help
-            element.click(timeout=Config.CLICK_TYPE_TIMEOUT)
+            try:
+                element.click(timeout=Config.CLICK_TYPE_TIMEOUT)
+            except Exception as e:
+                print(f"Error: Element with ID {element_id} not found.")
         else:
             raise Exception(f"Failed to find element {element_id} to click.")
 
@@ -117,7 +120,10 @@ class StateDetector:
         """
         element = self.get_element_by_agent_id(page, element_id)
         if element:
-            element.fill(text, timeout=Config.CLICK_TYPE_TIMEOUT)
+            try:
+                element.fill(text, timeout=Config.CLICK_TYPE_TIMEOUT)
+            except Exception as e:
+                print(f"[Error]: {e}")
         else:
             raise Exception(f"Failed to find element {element_id} to type in.")
 

@@ -14,18 +14,26 @@ class OneStepAtTime:
         self.task_interpreter = TaskInterpreter(model)
         self.state_detector = StateDetector()
 
-    def decide_next_action(self, task: str, history: list, current_dom: str) -> dict:
-        result = self.task_interpreter.parse_task(task, history, current_dom)
+    def decide_next_action(self, task_description: str, history: list, current_dom: str) -> dict:
+        result = self.task_interpreter.parse_task(task_description, history, current_dom)
         return result
 
-    def run_agent(self, task: str, start_url: str, max_steps: int = 15):
+    def run_agent(self, task: str, start_url: str, auth_file: str, max_steps: int = 15):
         sanitized_task = re.sub(r"[^a-zA-Z0-9_-]", "_", task.lower())[:50]
         screenshot_dir = f"{Config.SCREENSHOT_DIR}/{sanitized_task}"
         action_history = []
 
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=False, slow_mo=500)
-            page = browser.new_page()
+
+            if os.path.exists(auth_file):
+                print(f"Loading authentication from {auth_file}")
+                context = browser.new_context(storage_state=auth_file)
+            else:
+                print("Auth file not found, launching new context.")
+                context = browser.new_context()
+
+            page = context.new_page()
             page.goto(start_url)
 
             try:
@@ -47,7 +55,7 @@ class OneStepAtTime:
                         break
 
                     llm_decision = self.decide_next_action(
-                        task=task,
+                        task_description=task,
                         history=action_history,
                         current_dom=dom_string,
                     )
@@ -58,24 +66,28 @@ class OneStepAtTime:
                         json.dump(action_history, f, indent=4)
 
                     action_type = llm_decision.get("action")
+                    if not action_type:
+                        print(f"Error: LLM returned no action. Decision: {llm_decision}")
+                        break
+                    action_upper = action_type.upper()
 
-                    if action_type == "CLICK":
+                    if action_upper == "CLICK":
                         element_id = llm_decision.get("element_id")
                         print(f"[Action]: Clicking element {element_id}")
                         self.state_detector.click_element(page, str(element_id))
 
-                    elif action_type == "TYPE":
+                    elif action_upper == "TYPE":
                         element_id = llm_decision.get("element_id")
                         text = llm_decision.get("text")
                         print(f"[Action]: Typing '{text}' into element {element_id}")
                         self.state_detector.type_in_element(page, str(element_id), text)
 
-                    elif action_type == "PRESS_KEY":
+                    elif action_upper == "PRESS_KEY":
                         key = llm_decision.get("key")
                         print(f"[Action]: Pressing key '{key}'")
                         self.state_detector.press_key(page, key)
 
-                    elif action_type == "FINISH":
+                    elif action_upper == "FINISH":
                         print("[Action]: Task finished.")
                         screenshot_path = os.path.join(
                             screenshot_dir, f"{i + 2:02d}_final_state.png"
@@ -83,7 +95,7 @@ class OneStepAtTime:
                         self.state_detector.capture_screenshot(page, screenshot_path)
                         break
                     else:
-                        print(f"Unknown action: {action_type}")
+                        print(f"Unknown action: {action_upper}")
                         break
 
                 print("\n--- Loop finished ---")
@@ -129,4 +141,4 @@ if __name__ == "__main__":
         print("=" * 50)
     else:
         print("\n\n--- Starting Task ---")
-        k.run_agent(task=task_description, start_url=app_url)
+        k.run_agent(task=task_description, start_url=app_url, auth_file="auth_state_linear.json")
