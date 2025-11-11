@@ -5,7 +5,7 @@ from utils.external_api.Claude import Claude
 from utils.external_api.Gemini import Gemini
 from utils.external_api.DeepSeek import DeepSeek
 from utils.external_api.Perplexity import Perplex
-
+from utils.external_api.Grok import GrokClient
 
 class TaskInterpreter:
     def __init__(self, model: str = "chatgpt"):
@@ -17,6 +17,8 @@ class TaskInterpreter:
             self.model_client = Claude()
         elif model in ["perplexity"]:
             self.model_client = Perplex()
+        elif model in ["grok"]:
+            self.model_client = GrokClient()
         else:
             self.model_client = ChatGpt()
 
@@ -50,7 +52,7 @@ class TaskInterpreter:
                         1.  {"action": "CLICK", "element_id": <id>, "reason": "why I am clicking this"}
                         2.  {"action": "TYPE", "element_id": <id>, "text": "<text_to_type>", "reason": "why I am typing this"}
                         3.  {"action": "PRESS_KEY", "key": "<key_name>", "reason": "why I am pressing this key"} (e.g., "Enter", "Tab")
-                        4.  {"action": "FINISH", "reason": "The task is fully complete"}
+                        4.  {"action": "FINISH", "reason": "The task is Fully complete"}
                         
                         RULES:
                         - Respond with *only* a single, valid JSON object.
@@ -58,7 +60,7 @@ class TaskInterpreter:
                         - The `element_id` is a number (e.g., 1, 2, 3...).
                         - Do not make up IDs. Only use IDs from the current DOM.
                         - Think step-by-step to get closer to the main task.
-                        - If the goal seems accomplished FINISH the task.
+                        - Be decisive. Once the user's task is clearly done, you MUST respond with {"action": "FINISH"}
                     """
             result = self.model_client.generate_response(prompt=prompt, content=content)
             # Clean the response

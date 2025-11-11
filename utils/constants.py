@@ -6,32 +6,17 @@ test_tasks = [
     },
     {
         "app": "Linear",
-        "description": "Filter issues by status in Linear",
+        "description": "Create a new issue in Linear.",
         "url": "https://linear.app",
     },
     {
-        "app": "Notion",
-        "description": "Create a new database page in Notion",
-        "url": "https://notion.so",
+        "app": "Screener",
+        "description": """How to check the "Profit for EPS" and "Profit for PE" in HDFC Bank Ltd""",
+        "url": "https://www.screener.in/",
     },
     {
-        "app": "Notion",
-        "description": "Filter a database view in Notion",
-        "url": "https://notion.so",
+        "app": "Linear",
+        "description": "Go to the settings and change the font size from Default to Smaller.",
+        "url": "https://linear.app",
     },
-    {
-        "app": "Youtube",
-        "description": "How to play the song Hips don't lie by Shakira",
-        "url": "https://www.youtube.com",
-    },
-    {
-        "app": "Todomvc",
-        "description": "Add two todos: 'Buy milk' and 'Wash car'. Later, clear the list.",
-        "url": "https://todomvc.com/examples/react/dist/",
-    },
-    {
-        "app": "Flipkart",
-        "description": "How to check the price of Iphone 17 pro",
-        "url": "https://www.flipkart.com/",
-    }
 ]
