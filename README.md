@@ -41,3 +41,7 @@ This agent solves the "non-URL state" problem (like modals or forms that don't c
 
 The agent's "state" is its perception of the current UI, which it re-evaluates every loop. When a modal appears, it 
 simply sees a new list of interactive elements (like "Save", "Cancel") and acts accordingly.
+
+For the interpretation task, you can choose from any of the six model providers: ChatGPT, Grok, Gemini, Claude, 
+Perplexity, or DeepSeek. Just add your API keys to the `.env` file using the corresponding `<PROVIDER_API_KEY>`
+variable names, and you’ll be all set.
