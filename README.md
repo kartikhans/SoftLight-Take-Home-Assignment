@@ -27,10 +27,10 @@ Example "Simplified DOM":
 
 ```
 2. **Capture**: Before acting, the agent captures a full-page screenshot of the current UI state and saves it to a 
-task-specific folder (ex, `screenshots/add_two_todos.../`).
+task-specific folder (ex, `screenshots/create_a_new_project_in_linear.../`).
 3. **Decide (The "Brain")**: The agent sends the Task, Action History, and Current Simplified DOM to an LLM (like GPT-4o). 
 The LLM's sole job is to respond with a single JSON command, like:
-   `{"action": "TYPE", "element_id": 1, "text": "Call mom"}`
+   `{"action": "TYPE", "element_id": 1, "text": "New Project"}`
 4. **Act (The "Hands")**: The script parses the JSON command and executes it. It uses `get_element_by_agent_id()` to find 
 the Nth element on the page (ex, element_id: 1 is the 1st element). This "re-finding" logic is crucial for 
 handling dynamic UIs and DOM re-renders. The loop repeats until the task is complete.
