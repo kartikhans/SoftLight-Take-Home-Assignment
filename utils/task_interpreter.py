@@ -22,7 +22,9 @@ class TaskInterpreter:
         else:
             self.model_client = ChatGpt()
 
-    def parse_task(self, task_description, history, current_dom):
+        self.return_keys = {"action", "reason"}
+        self.try_threshold = 2
+    def parse_task(self, task_description, history, current_dom, try_count=0, error=""):
         """Use AI to break down tasks into actionable steps"""
         prompt = f"""
                     ---
@@ -33,6 +35,9 @@ class TaskInterpreter:
                     ---
                     Current Simplified DOM:
                     {current_dom}
+                    ---
+                    Any error encountered previously:
+                    {error}
                     ---
                     What is your next single JSON action?
                 """
@@ -66,10 +71,13 @@ class TaskInterpreter:
             # Clean the response
             result = re.sub(r"```json\s*|\s*```", "", result).strip()
             print(f"[LLM Decision]: {result}")
-
-            return json.loads(result)
-
+            result = json.loads(result)
+            return result
         except Exception as e:
-            print(f"Error parsing task: {e}")
-            # Return a fallback structure
-            return {"action": "FINISH", "reason": f"Error occurred: {e}"}
+            if try_count > self.try_threshold:
+                print(f"Error parsing task: {e} and more than {self.try_threshold} tries have been attempted.")
+                # Return a fallback structure
+                return {"action": "FINISH", "reason": f"Error occurred: {e}"}
+            return self.parse_task(task_description, history, current_dom, try_count=try_count+1,
+                            error=f"Final response was not a json and gave an exception - {e}, give a json "
+                                  f"response the way it is represented in content.")
